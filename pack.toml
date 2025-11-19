@@ -1,0 +1,13 @@
+name = "Fabric Holiday 25"
+author = "Louis, Fabricord"
+version = "1.0.0"
+pack-format = "packwiz:1.1.0"
+
+[index]
+file = "index.toml"
+hash-format = "sha256"
+hash = "96f300b669bd3118e53d03492319fbbbf3b32a37a7d93962c928a423543b8bed"
+
+[versions]
+fabric = "0.18.0"
+minecraft = "1.21.11-pre1"
