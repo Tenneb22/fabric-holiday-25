@@ -12,5 +12,5 @@ fabric = "0.18.2"
 minecraft = "1.21.11"
 
 [options]
-acceptable-game-versions = ["1.21.11-pre4", "1.21.11-rc1"]
+acceptable-game-versions = ["1.21.10", "1.21.11-pre4", "1.21.11-rc1"]
 no-internal-hashes = true
