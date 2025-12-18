@@ -14,7 +14,7 @@ file = "mods/anchorteleportsystem.pw.toml"
 metafile = true
 
 [[files]]
-file = "mods/antipothicspawners-0.0.2.jar"
+file = "mods/antipothicspawners-0.0.3.jar"
 
 [[files]]
 file = "mods/badpackets.pw.toml"
@@ -30,6 +30,10 @@ metafile = true
 
 [[files]]
 file = "mods/ellies-storage-options.pw.toml"
+metafile = true
+
+[[files]]
+file = "mods/extended-drawers-extensions.pw.toml"
 metafile = true
 
 [[files]]

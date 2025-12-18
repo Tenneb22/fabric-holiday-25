@@ -1,0 +1,13 @@
+name = "Extended Drawers: Extensions"
+filename = "ExtendedDrawersExtensions-4.3.0-beta.3+mc.1.21.11.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/gDfTLxwP/versions/mZDZx0L7/ExtendedDrawersExtensions-4.3.0-beta.3%2Bmc.1.21.11.jar"
+hash-format = "sha512"
+hash = "750580a6b08efbf8c1d0e34884a378a98c67985808579feefe4a92fc509dbcbf0dfe003a0a730172374f585ece951c3f92f31565aa1ebb50bfaa2055125a38ce"
+
+[update]
+[update.modrinth]
+mod-id = "gDfTLxwP"
+version = "mZDZx0L7"
