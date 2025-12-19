@@ -77,6 +77,10 @@ file = "mods/modmenu.pw.toml"
 metafile = true
 
 [[files]]
+file = "mods/more_than_a_foxbox.pw.toml"
+metafile = true
+
+[[files]]
 file = "mods/phantom-lucidity.pw.toml"
 metafile = true
 

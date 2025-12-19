@@ -1,0 +1,13 @@
+name = "More Than A Foxbox"
+filename = "more_than_a_foxbox-1.1.1+1.21.11.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/OQ7P6zcP/versions/F0pyv94q/more_than_a_foxbox-1.1.1%2B1.21.11.jar"
+hash-format = "sha512"
+hash = "91f8efbf39612051f03e2c4ecbe74a6773b6772910ed5ae78082311a4fe335ae3deac9af358a54b98698bcd0c5dff22e560e21dbf88655185d0da5298145702e"
+
+[update]
+[update.modrinth]
+mod-id = "OQ7P6zcP"
+version = "F0pyv94q"
