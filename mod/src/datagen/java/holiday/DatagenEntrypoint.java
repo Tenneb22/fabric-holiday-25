@@ -11,6 +11,7 @@ public class DatagenEntrypoint implements DataGeneratorEntrypoint {
         FabricDataGenerator.Pack pack = dataGenerator.createPack();
 
         pack.addProvider(HolidayServerPaintingVariantProvider::new);
+        pack.addProvider(HolidayServerPaintingVariantTagProvider::new);
     }
 
     @Override
