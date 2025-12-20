@@ -10,6 +10,7 @@ public class DatagenEntrypoint implements DataGeneratorEntrypoint {
     public void onInitializeDataGenerator(FabricDataGenerator dataGenerator) {
         FabricDataGenerator.Pack pack = dataGenerator.createPack();
 
+        pack.addProvider(HolidayServerBannerPatternProvider::new);
         pack.addProvider(HolidayServerBlockLootTableProvider::new);
         pack.addProvider(HolidayServerBlockTagProvider::new);
         pack.addProvider(HolidayServerPaintingVariantProvider::new);
@@ -18,6 +19,7 @@ public class DatagenEntrypoint implements DataGeneratorEntrypoint {
 
     @Override
     public void buildRegistry(RegistryBuilder registryBuilder) {
+        registryBuilder.addRegistry(RegistryKeys.BANNER_PATTERN, HolidayServerBannerPatternProvider::register);
         registryBuilder.addRegistry(RegistryKeys.PAINTING_VARIANT, HolidayServerPaintingVariantProvider::register);
     }
 }
