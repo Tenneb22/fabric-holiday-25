@@ -3,7 +3,7 @@
   "textures": {
     "bottom": "holiday-server-mod:block/ender_paralyzer_bottom",
     "side": "holiday-server-mod:block/ender_paralyzer_side",
-    "tendrils": "holiday-server-mod:block/ender_paralyzer_tendril",
+    "tendrils": "holiday-server-mod:block/ender_paralyzer_tendril_active",
     "top": "holiday-server-mod:block/ender_paralyzer_top",
     "particle": "holiday-server-mod:block/ender_paralyzer_bottom"
   },
