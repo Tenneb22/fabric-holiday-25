@@ -54,7 +54,7 @@ public class HopperBlockEntityMixin {
             cancellable = true
     )
     private static void preventTransferringMiteFood(Inventory from, Inventory to, ItemStack stack, int slot, Direction side, CallbackInfoReturnable<ItemStack> ci) {
-        if (HopperMiteItem.isFood(from, stack)) {
+        if (from != null && HopperMiteItem.isFood(from, stack)) {
             ci.setReturnValue(stack);
         }
     }
