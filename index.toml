@@ -98,6 +98,14 @@ file = "mods/leaves-us-in-peace.pw.toml"
 metafile = true
 
 [[files]]
+file = "mods/mavapi.pw.toml"
+metafile = true
+
+[[files]]
+file = "mods/mavm.pw.toml"
+metafile = true
+
+[[files]]
 file = "mods/modmenu.pw.toml"
 metafile = true
 
