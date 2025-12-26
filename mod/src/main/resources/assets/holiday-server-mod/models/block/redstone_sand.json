@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "holiday-server-mod:block/redstone_sand"
-  }
-}
