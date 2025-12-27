@@ -1,18 +1,15 @@
 package holiday.mixin;
 
-import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
-import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import holiday.entity.HeartEntity;
-import net.minecraft.entity.Entity;
+import holiday.idkwheretoputthis.WitherEntityExtension;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.boss.WitherEntity;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.projectile.WitherSkullEntity;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.particle.TintedParticleEffect;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldEvents;
@@ -26,7 +23,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(WitherEntity.class)
-public abstract class WitherEntityMixin extends HostileEntity {
+public abstract class WitherEntityMixin extends HostileEntity implements WitherEntityExtension {
 
     protected WitherEntityMixin(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
@@ -111,6 +108,11 @@ public abstract class WitherEntityMixin extends HostileEntity {
             return 0;
         }
         return this.blockBreakingCooldown;
+    }
+
+    @Override
+    public boolean fabric_holiday_25$isInOverWorld() {
+        return this.getEntityWorld().getDimensionEntry().matchesKey(DimensionTypes.OVERWORLD);
     }
 
 }

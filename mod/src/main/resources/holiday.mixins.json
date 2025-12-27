@@ -11,6 +11,7 @@
     "EndPortalBlockMixin",
     "EntityMixin",
     "HopperBlockEntityMixin",
+    "HostileEntityMixin",
     "InventorySlotWrapperMixin",
     "InventoryStorageImplAccessor",
     "ItemEntityMixin",
@@ -21,7 +22,6 @@
     "ServerPlayNetworkHandlerMixin",
     "SingleStackStorageMixin",
     "SlipperyMixin",
-    "WhitelistCommandMixin",
     "WhitelistCommandMixin",
     "WitherEntityMixin"
   ],
