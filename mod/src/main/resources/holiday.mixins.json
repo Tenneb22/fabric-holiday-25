@@ -17,7 +17,8 @@
     "LootContextTypesAccessor",
     "RedstoneTorchBlockMixin",
     "ServerPlayNetworkHandlerMixin",
-    "WhitelistCommandMixin"
+    "WhitelistCommandMixin",
+    "WitherEntityMixin"
   ],
   "client": [
     "ClientPlayerEntityMixin",
