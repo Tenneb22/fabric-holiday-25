@@ -14,6 +14,7 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentType;
 import net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder;
+import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerConfigurationConnectionEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerConfigurationNetworking;
@@ -26,13 +27,16 @@ import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.LavaCauldronBlock;
 import net.minecraft.block.LeveledCauldronBlock;
 import net.minecraft.block.dispenser.DispenserBehavior;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BucketItem;
 import net.minecraft.item.Items;
+import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.network.DisconnectionInfo;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.codec.PacketCodec;
@@ -173,6 +177,14 @@ public class CommonEntrypoint implements ModInitializer {
         });
 
         EndermanParalyzeEvent.EVENT.register((this::getIsParalyzed));
+
+        LootTableEvents.MODIFY_DROPS.register((registryEntry, lootContext, stacks) -> {
+            if (registryEntry.matchesKey(EntityType.WARDEN.getLootTableKey().orElseThrow()) && lootContext.get(LootContextParameters.ATTACKING_ENTITY) instanceof PlayerEntity) {
+                var stack = HolidayServerItems.ECHO_DUST.getDefaultStack();
+                stack.setCount(3);
+                stacks.add(stack);
+            }
+        });
     }
 
     private static void disconnect(ServerConfigurationNetworkHandler handler, String currentVersion) {

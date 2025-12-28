@@ -58,6 +58,8 @@ public final class HolidayServerItems {
     public static final Item STONE_MEAL = register("stone_meal", BoneMealItem::new);
     public static final Item GROUND_GRAVEL = register("ground_gravel",  settings -> new Item(settings.recipeRemainder(Items.BOWL)));
     public static final Item FINE_GRAVEL = register("fine_gravel", settings -> new Item(settings.recipeRemainder(Items.BOWL)));
+
+    public static final Item ECHO_DUST = register("echo_dust", Item::new);
   
     public static final Potion HASTE_POTION = Registry.register(
         Registries.POTION,
@@ -97,6 +99,7 @@ public final class HolidayServerItems {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register((itemGroup) -> {
                 itemGroup.addAfter(Items.MOJANG_BANNER_PATTERN, FABRIC_PATTERN_ITEM, TATER_PATTERN_ITEM);
                 itemGroup.addAfter(Items.FLINT, GROUND_GRAVEL, FINE_GRAVEL);
+                itemGroup.addBefore(Items.ECHO_SHARD, ECHO_DUST);
         });
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(entries -> entries.addBefore(Items.SKELETON_SKULL, TINY_POTATO));

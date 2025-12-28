@@ -28,6 +28,7 @@ public class HolidayServerModelProvider extends FabricModelProvider {
         generator.register(HolidayServerItems.FABRIC_PATTERN_ITEM, Models.GENERATED);
         this.registerMite(generator, HolidayServerItems.HOPPER_MITE);
         generator.register(HolidayServerItems.TATER_PATTERN_ITEM, Models.GENERATED);
+        generator.register(HolidayServerItems.ECHO_DUST, Models.GENERATED);
     }
 
     private void registerMite(ItemModelGenerator generator, Item item) {

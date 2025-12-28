@@ -71,6 +71,14 @@ public class HolidayServerRecipeProvider extends FabricRecipeProvider {
                     .criterion("has_potato", this.conditionsFromItem(Items.GOLD_INGOT))
                     .offerTo(exporter);
 
+                this.createShaped(RecipeCategory.MISC, Items.ECHO_SHARD)
+                    .input('#', HolidayServerItems.ECHO_DUST)
+                    .pattern("###")
+                    .pattern("###")
+                    .pattern("###")
+                    .criterion("has_dust", this.conditionsFromItem(HolidayServerItems.ECHO_DUST))
+                    .offerTo(exporter);
+
             }
         };
     }
