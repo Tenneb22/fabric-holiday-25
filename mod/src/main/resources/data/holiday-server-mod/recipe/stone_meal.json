@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    [
+      "minecraft:cobblestone"
+    ]
+  ],
+  "result": {
+    "count": 9,
+    "id": "holiday-server-mod:stone_meal"
+  }
+}

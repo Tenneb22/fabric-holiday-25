@@ -53,6 +53,8 @@ public final class HolidayServerItems {
     public static final Item GOLDEN_HOPPER = register("golden_hopper", settings -> new BlockItem(HolidayServerBlocks.GOLDEN_HOPPER, settings
         .useBlockPrefixedTranslationKey()));
 
+    public static final Item STONE_MEAL = register("stone_meal", BoneMealItem::new);
+
     public static Item register(String id, Item.Settings settings) {
         return register(keyOf(id), Item::new, settings);
     }

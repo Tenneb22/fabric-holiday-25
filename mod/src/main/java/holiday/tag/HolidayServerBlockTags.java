@@ -7,6 +7,7 @@ import net.minecraft.registry.tag.TagKey;
 
 public final class HolidayServerBlockTags {
     public static final TagKey<Block> CRYING_IMPACTORS = of("crying_impactors");
+    public static final TagKey<Block> STONE_MEALABLE = of("stone_mealable");
 
     private HolidayServerBlockTags() {
     }
