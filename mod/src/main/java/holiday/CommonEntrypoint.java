@@ -29,14 +29,11 @@ import net.minecraft.block.LeveledCauldronBlock;
 import net.minecraft.block.dispenser.DispenserBehavior;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BucketItem;
 import net.minecraft.item.Items;
-import net.minecraft.loot.context.LootContextParameters;
+import net.minecraft.loot.condition.KilledByPlayerLootCondition;
 import net.minecraft.network.DisconnectionInfo;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.codec.PacketCodec;
@@ -179,7 +176,7 @@ public class CommonEntrypoint implements ModInitializer {
         EndermanParalyzeEvent.EVENT.register((this::getIsParalyzed));
 
         LootTableEvents.MODIFY_DROPS.register((registryEntry, lootContext, stacks) -> {
-            if (registryEntry.matchesKey(EntityType.WARDEN.getLootTableKey().orElseThrow()) && lootContext.get(LootContextParameters.ATTACKING_ENTITY) instanceof PlayerEntity) {
+            if (registryEntry.matchesKey(EntityType.WARDEN.getLootTableKey().orElseThrow()) && KilledByPlayerLootCondition.builder().build().test(lootContext)) {
                 var stack = HolidayServerItems.ECHO_DUST.getDefaultStack();
                 stack.setCount(3);
                 stacks.add(stack);
