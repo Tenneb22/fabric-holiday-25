@@ -34,7 +34,8 @@ public abstract class WitherEntityMixinSquared extends HostileEntity {
         prefix = "handler"
     )
     @WrapMethod(
-        method = "@MixinSquared:Handler"
+        method = "@MixinSquared:Handler",
+        remap = false
     )
     private void wrapCustomServerAiStep(ServerWorld world, CallbackInfo ci, Operation<Void> original) {
         if (!((WitherEntityExtension)(Object)this).fabric_holiday_25$isInOverWorld()) {
@@ -49,7 +50,8 @@ public abstract class WitherEntityMixinSquared extends HostileEntity {
         name = "updatePostDeath"
     )
     @WrapMethod(
-        method = "@MixinSquared:Handler"
+        method = "@MixinSquared:Handler",
+        remap = false
     )
     private void wrapUpdatePostDeath(Operation<Void> original) {
         if (((WitherEntityExtension)(Object)this).fabric_holiday_25$isInOverWorld()) {
