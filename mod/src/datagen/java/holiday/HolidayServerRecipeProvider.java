@@ -2,6 +2,7 @@ package holiday;
 
 import java.util.concurrent.CompletableFuture;
 
+import holiday.baritone.BaritoneInit;
 import holiday.block.HolidayServerBlocks;
 import holiday.item.HolidayServerItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -71,6 +72,15 @@ public class HolidayServerRecipeProvider extends FabricRecipeProvider {
                     .criterion("has_potato", this.conditionsFromItem(Items.GOLD_INGOT))
                     .offerTo(exporter);
 
+                this.createShaped(RecipeCategory.MISC, BaritoneInit.BARITONE)
+                    .input('g', Items.GOLD_INGOT)
+                    .input('G', Items.NOTE_BLOCK)
+                    .input('n', Items.STONE_BUTTON)
+                    .pattern("ggG")
+                    .pattern("gnn")
+                    .pattern("ggg")
+                    .criterion("has_gold_ingot", this.conditionsFromItem(Items.GOLD_INGOT))
+                    .offerTo(exporter);
             }
         };
     }
