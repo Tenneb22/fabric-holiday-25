@@ -5,7 +5,7 @@ echo "Building internal mod..."
 cd mod
 
 chmod +x ./gradlew
-./gradlew clean runDatagen build
+./gradlew clean build
 
 # Build pack
 echo "Building pack..."

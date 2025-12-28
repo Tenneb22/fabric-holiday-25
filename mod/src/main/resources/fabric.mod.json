@@ -18,9 +18,6 @@
     ],
     "server": [
       "holiday.ServerEntrypoint"
-    ],
-    "fabric-datagen": [
-      "holiday.DatagenEntrypoint"
     ]
   },
   "mixins": [
