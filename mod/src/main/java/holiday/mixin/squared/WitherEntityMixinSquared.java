@@ -11,6 +11,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Dynamic;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Pseudo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
@@ -22,7 +23,7 @@ public abstract class WitherEntityMixinSquared extends HostileEntity {
     }
 
     /*
-        ChainStyleWither compatability
+        ChainStyleWither compatibility
      */
 
     @Dynamic
@@ -41,22 +42,13 @@ public abstract class WitherEntityMixinSquared extends HostileEntity {
         }
     }
 
-    @Dynamic
+    /**
+     * @author Tenneb22
+     * @reason Remove explosion on death from ChainStyleWither mod
+     */
     @SuppressWarnings("all")
-    @TargetHandler(
-        mixin = "dev.louis.chainstylewither.mixin.WitherBossMixin",
-        //name = "updatePostDeath"
-        name = "method_6108"
-    )
-    @WrapMethod(
-        method = "@MixinSquared:Handler",
-        remap = true
-    )
-    private void wrapUpdatePostDeath(Operation<Void> original) {
-        if (((WitherEntityExtension)(Object)this).fabric_holiday_25$isInOverWorld()) {
-            super.updatePostDeath();
-        } else {
-            original.call();
-        }
+    @Overwrite
+    protected void updatePostDeath() {
+        super.updatePostDeath();
     }
 }

@@ -1,7 +1,3 @@
-import org.gradle.api.JavaVersion
-import org.gradle.api.tasks.compile.JavaCompile
-import org.gradle.jvm.toolchain.JavaLanguageVersion
-
 plugins {
 	id 'fabric-loom' version '1.14.6'
 	id 'maven-publish'
@@ -58,7 +54,7 @@ dependencies {
 	modRuntimeOnly "maven.modrinth:more_than_a_foxbox:1.1.2+1.21.11"
   include(implementation(annotationProcessor("com.github.bawnorton.mixinsquared:mixinsquared-fabric:0.3.7-beta.1")))
 
-  modImplementation name: "ChainStyleWither", version: "1.7.0"
+  modImplementation "unspecified:ChainStyleWither:1.7.0"
 }
 
 processResources {
