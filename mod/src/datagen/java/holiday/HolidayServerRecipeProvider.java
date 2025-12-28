@@ -59,6 +59,7 @@ public class HolidayServerRecipeProvider extends FabricRecipeProvider {
                     .input('O', Items.OBSIDIAN)
                     .pattern("#E#")
                     .pattern("OOO")
+                    .criterion("has_potato", this.conditionsFromItem(Items.ENDER_EYE))
                     .offerTo(exporter);
 
                 this.createShaped(RecipeCategory.REDSTONE, HolidayServerItems.GOLDEN_HOPPER)
@@ -67,6 +68,7 @@ public class HolidayServerRecipeProvider extends FabricRecipeProvider {
                     .pattern("G G")
                     .pattern("GCG")
                     .pattern(" G ")
+                    .criterion("has_potato", this.conditionsFromItem(Items.GOLD_INGOT))
                     .offerTo(exporter);
 
             }
