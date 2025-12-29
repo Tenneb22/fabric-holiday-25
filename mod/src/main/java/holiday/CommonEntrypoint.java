@@ -98,63 +98,6 @@ public class CommonEntrypoint implements ModInitializer {
         HolidayServerEntities.register();
         BaritoneInit.onInitialize();
 
-        DispenserBehavior oldBucketBehavior = DispenserBlock.BEHAVIORS.get(Items.BUCKET);
-        DispenserBehavior bucketBehavior = (pointer, stack) -> {
-            BlockPos pos = pointer.pos()
-                .offset(pointer.state().get(DispenserBlock.FACING));
-            BlockState state = pointer.world().getBlockState(pos);
-
-            if (state.getBlock() instanceof AbstractCauldronBlock cauldronBlock && stack.getCount() == 1) {
-                Fluid fluid;
-
-                if (cauldronBlock.isFull(state) && stack.isOf(Items.BUCKET)) {
-                    if (state.getBlock() instanceof LavaCauldronBlock) {
-                        fluid = Fluids.LAVA;
-                    } else {
-                        fluid = Fluids.WATER;
-                    }
-
-                    pointer.world()
-                        .setBlockState(pos, Blocks.CAULDRON.getDefaultState());
-                    pointer.world().playSound(
-                        null,
-                        pos,
-                        fluid.getBucketFillSound()
-                            .orElse(SoundEvents.ITEM_BUCKET_FILL),
-                        SoundCategory.BLOCKS,
-                        1.0f,
-                        1.5f
-                    );
-
-                    return fluid.getBucketItem().getDefaultStack();
-                } else {
-                    fluid = ((BucketItem) stack.getItem()).getFluid();
-                    SoundEvent soundEvent = fluid == Fluids.LAVA ? SoundEvents.ITEM_BUCKET_EMPTY_LAVA : SoundEvents.ITEM_BUCKET_EMPTY;
-                    BlockState cauldronState = fluid == Fluids.LAVA ?
-                        Blocks.LAVA_CAULDRON.getDefaultState() :
-                        Blocks.WATER_CAULDRON.getDefaultState()
-                            .with(LeveledCauldronBlock.LEVEL, LeveledCauldronBlock.MAX_LEVEL);
-
-                    pointer.world().setBlockState(pos, cauldronState);
-                    pointer.world().playSound(
-                        null,
-                        pos,
-                        soundEvent,
-                        SoundCategory.BLOCKS,
-                        1.0f,
-                        1.5f
-                    );
-
-                    return Items.BUCKET.getDefaultStack();
-                }
-            }
-
-            return oldBucketBehavior.dispense(pointer, stack);
-        };
-        DispenserBlock.registerBehavior(Items.BUCKET, bucketBehavior);
-        DispenserBlock.registerBehavior(Items.LAVA_BUCKET, bucketBehavior);
-        DispenserBlock.registerBehavior(Items.WATER_BUCKET, bucketBehavior);
-
         PayloadTypeRegistry.configurationS2C().register(RequestVersionPayload.ID, RequestVersionPayload.PACKET_CODEC);
         PayloadTypeRegistry.configurationC2S().register(VersionResponsePayload.ID, VersionResponsePayload.PACKET_CODEC);
 
