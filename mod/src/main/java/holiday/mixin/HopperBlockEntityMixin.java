@@ -90,16 +90,15 @@ public abstract class HopperBlockEntityMixin {
             ItemStack stack = instance.getStack(slot);
             if (stack.isEmpty()) return ItemStack.EMPTY;
 
-            ItemStack toInsert = stack.copy();
-            ItemStack leftover = HopperBlockEntity.transfer(instance, invokeGetOutputInventory(instance.getWorld(), instance.getPos(), instance), toInsert, ((HopperBlockEntityMixin) (Object) instance).getFacing().getOpposite());
 
-            if (!leftover.isEmpty()) {
-                instance.setStack(slot, leftover);
-                return leftover;
-            } else {
-                instance.setStack(slot, ItemStack.EMPTY);
-                return toInsert;
-            }        }
+            ItemStack toInsert = instance.removeStack(slot, stack.getCount());
+            ItemStack leftover = HopperBlockEntity.transfer(
+                instance,
+                invokeGetOutputInventory(instance.getWorld(), instance.getPos(), instance),
+                toInsert,
+                ((HopperBlockEntityMixin) (Object) instance).getFacing().getOpposite()
+            );
+        }
         return original.call(instance, slot, amount);
     }
 

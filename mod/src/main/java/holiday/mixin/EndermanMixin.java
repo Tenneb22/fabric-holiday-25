@@ -1,6 +1,6 @@
 package holiday.mixin;
 
-import holiday.event.EndermanParalyzeEvent;
+import holiday.event.InhibitEvent;
 import net.minecraft.entity.mob.EndermanEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class EndermanMixin {
 	@Inject(method = "teleportTo(DDD)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/mob/EndermanEntity;getEntityPos()Lnet/minecraft/util/math/Vec3d;", shift = At.Shift.BEFORE), cancellable = true)
     private void stopTeleporting(double d, double e, double f, CallbackInfoReturnable<Boolean> cir){
-        if(EndermanParalyzeEvent.EVENT.invoker().canTeleport((EndermanEntity) (Object) this))
+        if(InhibitEvent.EVENT.invoker().canTeleport((EndermanEntity) (Object) this))
             cir.setReturnValue(false);
     }
 }

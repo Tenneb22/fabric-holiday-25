@@ -2,12 +2,12 @@ package holiday.event;
 
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
-import net.minecraft.entity.mob.EndermanEntity;
+import net.minecraft.entity.LivingEntity;
 
-public interface EndermanParalyzeEvent {
-    Event<EndermanParalyzeEvent> EVENT = EventFactory.createArrayBacked(EndermanParalyzeEvent.class,
+public interface InhibitEvent {
+    Event<InhibitEvent> EVENT = EventFactory.createArrayBacked(InhibitEvent.class,
             (listeners) -> (enderman) -> {
-                for (EndermanParalyzeEvent listener : listeners) {
+                for (InhibitEvent listener : listeners) {
                     if (!listener.canTeleport(enderman)) {
                         return false;
                     }
@@ -15,5 +15,5 @@ public interface EndermanParalyzeEvent {
                 return true;
             });
 
-    boolean canTeleport(EndermanEntity enderMan);
+    boolean canTeleport(LivingEntity entity);
 }

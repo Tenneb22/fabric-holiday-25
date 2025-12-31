@@ -52,7 +52,7 @@ public class HolidayServerRecipeProvider extends FabricRecipeProvider {
 
                 this.offer2x2CompactingRecipe(RecipeCategory.DECORATIONS, HolidayServerItems.TINY_POTATO, Items.POTATO);
 
-                this.createShaped(RecipeCategory.MISC, HolidayServerItems.ENDER_PARALYZER)
+                this.createShaped(RecipeCategory.MISC, HolidayServerItems.TELE_INHIBITOR)
                     .input('#', Items.TWISTING_VINES)
                     .input('E', Items.ENDER_EYE)
                     .input('O', Items.OBSIDIAN)

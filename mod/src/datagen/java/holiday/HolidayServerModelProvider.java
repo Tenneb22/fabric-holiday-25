@@ -24,7 +24,7 @@ public class HolidayServerModelProvider extends FabricModelProvider {
         generator.registerSimpleCubeAll(HolidayServerBlocks.REDSTONE_SAND);
         generator.registerNorthDefaultHorizontalRotatable(HolidayServerBlocks.TINY_POTATO);
         this.registerHopper(generator, HolidayServerBlocks.GOLDEN_HOPPER);
-        this.registerPreModeled(generator, HolidayServerBlocks.ENDER_PARALYZER);
+        this.registerPreModeled(generator, HolidayServerBlocks.TELE_INHIBITOR);
     }
 
     @Override

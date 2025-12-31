@@ -9,7 +9,6 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.networking.v1.ClientConfigurationNetworking;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
-import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gl.RenderPipelines;
@@ -20,14 +19,11 @@ import net.minecraft.client.gui.tooltip.Tooltip;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.render.BlockRenderLayer;
 import net.minecraft.client.render.entity.EntityRendererFactories;
-import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.world.ChunkSectionCache;
-import net.minecraft.world.chunk.ChunkSection;
 import org.joml.Matrix3x2fStack;
 
 import holiday.item.HolidayServerItems;
@@ -72,7 +68,7 @@ public class ClientEntrypoint implements ClientModInitializer {
             }
         });
 
-        BlockRenderLayerMap.putBlock(HolidayServerBlocks.ENDER_PARALYZER, BlockRenderLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(HolidayServerBlocks.TELE_INHIBITOR, BlockRenderLayer.CUTOUT);
 
         EntityRendererFactories.register(HolidayServerEntities.HEART_ENTITY, HeartEntityRenderer::new);
 

@@ -30,7 +30,7 @@ public class HolidayServerBlockTagProvider extends FabricTagProvider.BlockTagPro
                 .add(HolidayServerBlocks.REDSTONE_SAND);
         this.valueLookupBuilder(BlockTags.PICKAXE_MINEABLE)
                 .add(HolidayServerBlocks.GOLDEN_HOPPER)
-                .add(HolidayServerBlocks.ENDER_PARALYZER);
+                .add(HolidayServerBlocks.TELE_INHIBITOR);
 
 
     }

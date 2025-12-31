@@ -31,7 +31,7 @@ public final class HolidayServerItems {
             .useBlockPrefixedTranslationKey()
             .equippableUnswappable(EquipmentSlot.HEAD)));
 
-    public static final Item ENDER_PARALYZER = register("ender_paralyzer", settings -> new BlockItem(HolidayServerBlocks.ENDER_PARALYZER, settings
+    public static final Item TELE_INHIBITOR = register("tele_inhibitor", settings -> new BlockItem(HolidayServerBlocks.TELE_INHIBITOR, settings
         .useBlockPrefixedTranslationKey()));
 
     public static final Item FABRIC_PATTERN_ITEM = register("fabric_banner_pattern", new Item.Settings().maxCount(1).component(DataComponentTypes.PROVIDES_BANNER_PATTERNS, HolidayServerBannerPatternTags.FABRIC_PATTERN_ITEM));
@@ -110,7 +110,7 @@ public final class HolidayServerItems {
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(entries -> {
             entries.addAfter(Items.HOPPER, GOLDEN_HOPPER, HOPPER_MITE);
-            entries.addAfter(Items.REDSTONE_BLOCK, REDSTONE_SAND, ENDER_PARALYZER);
+            entries.addAfter(Items.REDSTONE_BLOCK, REDSTONE_SAND, TELE_INHIBITOR);
         });
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(entries -> {

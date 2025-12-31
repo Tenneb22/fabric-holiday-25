@@ -23,6 +23,7 @@
     "PointedDripstoneBlockMixin",
     "RedstoneTorchBlockMixin",
     "ServerPlayNetworkHandlerMixin",
+    "ShulkerEntityMixin",
     "SingleStackStorageMixin",
     "SlipperyMixin",
     "WhitelistCommandMixin",

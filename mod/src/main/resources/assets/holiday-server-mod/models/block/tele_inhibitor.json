@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:block/block",
   "textures": {
-    "bottom": "holiday-server-mod:block/ender_paralyzer_bottom",
-    "side": "holiday-server-mod:block/ender_paralyzer_side",
-    "tendrils": "holiday-server-mod:block/ender_paralyzer_tendril_active",
-    "top": "holiday-server-mod:block/ender_paralyzer_top",
-    "particle": "holiday-server-mod:block/ender_paralyzer_bottom"
+    "bottom": "holiday-server-mod:block/tele_inhibitor_bottom",
+    "side": "holiday-server-mod:block/tele_inhibitor_side",
+    "tendrils": "holiday-server-mod:block/tele_inhibitor_tendril_active",
+    "top": "holiday-server-mod:block/tele_inhibitor_top",
+    "particle": "holiday-server-mod:block/tele_inhibitor_bottom"
   },
   "elements": [
     {

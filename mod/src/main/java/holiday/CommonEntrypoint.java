@@ -6,7 +6,7 @@ import holiday.block.blockentity.HolidayServerBlockEntities;
 import holiday.component.HolidayServerDataComponentTypes;
 import holiday.entity.HolidayServerEntities;
 import holiday.entity.effect.HolidayServerEffects;
-import holiday.event.EndermanParalyzeEvent;
+import holiday.event.InhibitEvent;
 import holiday.item.HolidayServerItems;
 import holiday.loot.HolidayServerLootContextTypes;
 import holiday.baritone.BaritoneInit;
@@ -21,19 +21,9 @@ import net.fabricmc.fabric.api.networking.v1.ServerConfigurationConnectionEvents
 import net.fabricmc.fabric.api.networking.v1.ServerConfigurationNetworking;
 import net.fabricmc.loader.api.FabricLoader;
 
-import net.minecraft.block.AbstractCauldronBlock;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.DispenserBlock;
-import net.minecraft.block.LavaCauldronBlock;
-import net.minecraft.block.LeveledCauldronBlock;
-import net.minecraft.block.dispenser.DispenserBehavior;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.item.BucketItem;
-import net.minecraft.item.Items;
 import net.minecraft.loot.condition.KilledByPlayerLootCondition;
 import net.minecraft.network.DisconnectionInfo;
 import net.minecraft.network.PacketByteBuf;
@@ -41,13 +31,11 @@ import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.codec.PacketCodecs;
 import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.network.packet.Packet;
+import net.minecraft.registry.Registries;
 import net.minecraft.resource.featuretoggle.FeatureFlags;
 import net.minecraft.resource.featuretoggle.FeatureSet;
 import net.minecraft.server.network.ServerConfigurationNetworkHandler;
 import net.minecraft.server.network.ServerPlayerConfigurationTask;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -118,7 +106,7 @@ public class CommonEntrypoint implements ModInitializer {
             context.networkHandler().completeTask(CheckVersionTask.KEY);
         });
 
-        EndermanParalyzeEvent.EVENT.register((this::getIsParalyzed));
+        InhibitEvent.EVENT.register((this::getIsInhibited));
 
         LootTableEvents.MODIFY_DROPS.register((registryEntry, lootContext, stacks) -> {
             if (registryEntry.matchesKey(EntityType.WARDEN.getLootTableKey().orElseThrow()) && KilledByPlayerLootCondition.builder().build().test(lootContext)) {
@@ -127,6 +115,9 @@ public class CommonEntrypoint implements ModInitializer {
                 stacks.add(stack);
             }
         });
+
+        Registries.ITEM.addAlias(identifier("ender_paralyzer"), identifier("tele_inhibitor"));
+        Registries.BLOCK.addAlias(identifier("ender_paralyzer"), identifier("tele_inhibitor"));
     }
 
     private static void disconnect(ServerConfigurationNetworkHandler handler, String currentVersion) {
@@ -181,7 +172,7 @@ public class CommonEntrypoint implements ModInitializer {
         }
     }
 
-    public boolean getIsParalyzed(LivingEntity entity) {
+    public boolean getIsInhibited(LivingEntity entity) {
         Box box = entity.getBoundingBox().expand(8.0D, 8.0D, 8.0D);
         int n = MathHelper.floor(box.minX);
         int o = MathHelper.floor(box.maxX);
@@ -195,7 +186,7 @@ public class CommonEntrypoint implements ModInitializer {
             for (int q1 = p; q1 < q; q1++)
                 for (int n2 = n1; n2 < o1; n2++) {
                     BlockState state = entity.getEntityWorld().getBlockState(mutablePos.set(p1, q1, n2));
-                    if (state.getBlock().equals(HolidayServerBlocks.ENDER_PARALYZER)) { //Set the custom block here
+                    if (state.getBlock().equals(HolidayServerBlocks.TELE_INHIBITOR)) { //Set the custom block here
                         return true;
                     }
                 }
