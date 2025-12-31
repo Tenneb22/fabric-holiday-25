@@ -27,6 +27,9 @@ public final class HolidayServerItems {
     public static final Item REDSTONE_SAND = register("redstone_sand", settings -> new BlockItem(HolidayServerBlocks.REDSTONE_SAND, settings
             .useBlockPrefixedTranslationKey()));
 
+    public static final Item STORAGE_TERMINAL = register("storage_terminal", settings -> new BlockItem(HolidayServerBlocks.STORAGE_TERMINAL, settings
+            .useBlockPrefixedTranslationKey()));
+
     public static final Item TINY_POTATO = register("tiny_potato", settings -> new BlockItem(HolidayServerBlocks.TINY_POTATO, settings
             .useBlockPrefixedTranslationKey()
             .equippableUnswappable(EquipmentSlot.HEAD)));
@@ -36,6 +39,9 @@ public final class HolidayServerItems {
 
     public static final Item FABRIC_PATTERN_ITEM = register("fabric_banner_pattern", new Item.Settings().maxCount(1).component(DataComponentTypes.PROVIDES_BANNER_PATTERNS, HolidayServerBannerPatternTags.FABRIC_PATTERN_ITEM));
     public static final Item TATER_PATTERN_ITEM = register("tater_banner_pattern", new Item.Settings().maxCount(1).component(DataComponentTypes.PROVIDES_BANNER_PATTERNS, HolidayServerBannerPatternTags.TATER_PATTERN_ITEM));
+
+    public static final Item UNSAFE_MEMORY = register("unsafe_memory", settings -> new UnsafeMemoryItem(settings
+        .maxCount(1)));
 
     public static final Item HOPPER_MITE = register("hopper_mite", settings -> new HopperMiteItem(settings
         .maxCount(1)));
@@ -96,20 +102,25 @@ public final class HolidayServerItems {
         });
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register((itemGroup) -> {
-                itemGroup.addAfter(Items.MOJANG_BANNER_PATTERN, FABRIC_PATTERN_ITEM, TATER_PATTERN_ITEM);
-                itemGroup.addAfter(Items.FLINT, GROUND_GRAVEL, FINE_GRAVEL);
-                itemGroup.addBefore(Items.ECHO_SHARD, ECHO_DUST);
-        });
+            itemGroup.addAfter(Items.MOJANG_BANNER_PATTERN, FABRIC_PATTERN_ITEM, TATER_PATTERN_ITEM);
+            itemGroup.addAfter(Items.FLINT, GROUND_GRAVEL, FINE_GRAVEL);
+            itemGroup.addBefore(Items.ECHO_SHARD, ECHO_DUST);
 
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(entries -> entries.addBefore(Items.SKELETON_SKULL, TINY_POTATO));
+            ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(entries -> {
+                entries.addAfter(Items.PINK_SHULKER_BOX, STORAGE_TERMINAL);
+                entries.addBefore(Items.SKELETON_SKULL, TINY_POTATO);
+            });
 
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(entries -> {
-            entries.addAfter(Items.HOPPER, GOLDEN_HOPPER, HOPPER_MITE);
-            entries.addAfter(Items.REDSTONE_BLOCK, REDSTONE_SAND, TELE_INHIBITOR);
-        });
+            ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(entries -> entries.addBefore(Items.SKELETON_SKULL, TINY_POTATO));
 
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(entries -> {
-            entries.addAfter(Items.BONE_MEAL, STONE_MEAL);
+            ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(entries -> {
+                entries.addAfter(Items.HOPPER, GOLDEN_HOPPER, HOPPER_MITE);
+                entries.addAfter(Items.REDSTONE_BLOCK, REDSTONE_SAND, TELE_INHIBITOR);
+            });
+
+            ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(entries -> {
+                entries.addAfter(Items.BONE_MEAL, STONE_MEAL);
+            });
         });
     }
 

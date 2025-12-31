@@ -3,12 +3,20 @@ package holiday;
 import holiday.block.HolidayServerBlocks;
 import holiday.component.HolidayServerDataComponentTypes;
 import holiday.item.HolidayServerItems;
+import holiday.render.MemoryValueProperty;
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.minecraft.block.Block;
 import net.minecraft.client.data.*;
 import net.minecraft.client.render.model.json.ModelVariant;
 import net.minecraft.client.render.model.json.WeightedVariant;
+import net.minecraft.client.data.BlockStateModelGenerator;
+import net.minecraft.client.data.ItemModelGenerator;
+import net.minecraft.client.data.ItemModels;
+import net.minecraft.client.data.Models;
+import net.minecraft.client.data.TexturedModel;
+import net.minecraft.client.render.item.model.ItemModel;
+import net.minecraft.client.render.item.model.RangeDispatchItemModel;
 import net.minecraft.item.Item;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.collection.Pool;
@@ -22,6 +30,7 @@ public class HolidayServerModelProvider extends FabricModelProvider {
     @Override
     public void generateBlockStateModels(BlockStateModelGenerator generator) {
         generator.registerSimpleCubeAll(HolidayServerBlocks.REDSTONE_SAND);
+        generator.registerSingleton(HolidayServerBlocks.STORAGE_TERMINAL, TexturedModel.CUBE_TOP);
         generator.registerNorthDefaultHorizontalRotatable(HolidayServerBlocks.TINY_POTATO);
         this.registerHopper(generator, HolidayServerBlocks.GOLDEN_HOPPER);
         this.registerPreModeled(generator, HolidayServerBlocks.TELE_INHIBITOR);
@@ -30,6 +39,7 @@ public class HolidayServerModelProvider extends FabricModelProvider {
     @Override
     public void generateItemModels(ItemModelGenerator generator) {
         generator.register(HolidayServerItems.ABSOLUTELY_SAFE_ARMOR, Models.GENERATED);
+        this.registerMemory(generator, HolidayServerItems.UNSAFE_MEMORY, 4);
         generator.register(HolidayServerItems.FABRIC_PATTERN_ITEM, Models.GENERATED);
         this.registerMite(generator, HolidayServerItems.HOPPER_MITE);
         generator.register(HolidayServerItems.TATER_PATTERN_ITEM, Models.GENERATED);
@@ -37,6 +47,21 @@ public class HolidayServerModelProvider extends FabricModelProvider {
         generator.register(HolidayServerItems.STONE_MEAL, Models.GENERATED);
         generator.register(HolidayServerItems.FINE_GRAVEL, Models.GENERATED);
         generator.register(HolidayServerItems.GROUND_GRAVEL, Models.GENERATED);
+    }
+
+    private void registerMemory(ItemModelGenerator generator, Item item, int count) {
+        RangeDispatchItemModel.Entry[] entries = new RangeDispatchItemModel.Entry[count];
+
+        for (int i = 0; i < count; i++) {
+            ItemModel.Unbaked model = ItemModels.basic(generator.registerSubModel(item, "_" + i, Models.GENERATED));
+            entries[i] = ItemModels.rangeDispatchEntry(model, (float) i / count * Integer.MAX_VALUE);
+        }
+
+        generator.output.accept(item, ItemModels.rangeDispatch(
+            MemoryValueProperty.INSTANCE,
+            entries[0].model(),
+            entries
+        ));
     }
 
     private void registerMite(ItemModelGenerator generator, Item item) {
