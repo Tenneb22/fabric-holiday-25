@@ -10,6 +10,7 @@ import java.util.Properties;
 
 public record Config(
     String discordWebhookUrl,
+    // does nothing if shouldWitherOnlyAttackCrown is true
     boolean shouldTatherTargetPlayers,
     boolean shouldSilenceTather,
     boolean shouldHideTatherBossBar,
