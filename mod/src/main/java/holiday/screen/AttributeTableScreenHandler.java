@@ -68,6 +68,10 @@ public class AttributeTableScreenHandler extends ScreenHandler {
         ((SimpleInventory) inventory).addListener(this::onContentChanged);
     }
 
+    public AttributeTableScreenHandler(int syncId, PlayerInventory inv) {
+        this(syncId, inv, null);
+    }
+
     @Override
     public void onContentChanged(Inventory inv) {
         if (inv != inventory) return;
