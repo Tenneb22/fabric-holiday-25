@@ -22,6 +22,7 @@
     "LootContextTypesAccessor",
     "PointedDripstoneBlockMixin",
     "RedstoneTorchBlockMixin",
+    "ScreenHandlerPropertyUpdateS2CPacketMixin",
     "ServerPlayNetworkHandlerMixin",
     "ShulkerEntityMixin",
     "SingleStackStorageMixin",

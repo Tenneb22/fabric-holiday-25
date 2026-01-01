@@ -27,7 +27,7 @@ public class HandledScreenMixin {
     )
     private void useExpandedSlotCount(DrawContext context, TextRenderer textRenderer, ItemStack stack, int x, int y, String stackCountText, Operation<Void> operation, @Local Slot slot) {
         if (stackCountText == null && (Object) this instanceof StorageTerminalScreen screen) {
-            int count = screen.getScreenHandler().getCount(slot);
+            long count = screen.getScreenHandler().getCount(slot);
 
             if (count > 1) {
                 stackCountText = LargeItemStackCounts.format(count);

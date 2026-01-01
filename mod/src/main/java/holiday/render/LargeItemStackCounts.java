@@ -4,7 +4,7 @@ public final class LargeItemStackCounts {
     private LargeItemStackCounts() {
     }
 
-    public static String format(int count) {
+    public static String format(long count) {
         return String.valueOf(count);
     }
 

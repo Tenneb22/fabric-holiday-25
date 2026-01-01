@@ -62,7 +62,7 @@ public class StorageTerminalScreenHandler extends ScreenHandler {
 
     private final Storage<ItemVariant> disconnectedStorage;
 
-    private final Property[] slotCounts = new Property[INVENTORY_SIZE];
+    private final LongPropertyPair[] slotCounts = new LongPropertyPair[INVENTORY_SIZE];
 
     private final Property size = Property.create();
     private final Property connected = Property.create();
@@ -85,8 +85,11 @@ public class StorageTerminalScreenHandler extends ScreenHandler {
             for (int x = 0; x < INVENTORY_WIDTH; x++) {
                 int index = (y * INVENTORY_WIDTH) + x;
 
-                this.slotCounts[index] = Property.create();
-                this.addProperty(this.slotCounts[index]);
+                LongPropertyPair pair = new LongPropertyPair();
+                this.slotCounts[index] = pair;
+
+                this.addProperty(pair.high);
+                this.addProperty(pair.low);
 
                 this.addSlot(new LockedSlot(this.inventory, index, left + x * 18, top + y * 18));
             }
@@ -138,7 +141,7 @@ public class StorageTerminalScreenHandler extends ScreenHandler {
                     maxCount = MathHelper.ceil(slot.getStack().getCount() / 2d);
                 }
 
-                tasks.add(new Task(cursor, storage, null, button == 1 ? 1 : Integer.MAX_VALUE));
+                tasks.add(new Task(cursor, storage, null, button == 1 ? 1 : Long.MAX_VALUE));
                 tasks.add(new Task(storage, cursor, item, maxCount));
             } else if (actionType == SlotActionType.QUICK_MOVE) {
                 Storage<ItemVariant> from = inventorySlot ? storage : playerInventory.getSlot(slot.getIndex());
@@ -192,7 +195,7 @@ public class StorageTerminalScreenHandler extends ScreenHandler {
 
         this.inventory.clear();
 
-        for (Property property : this.slotCounts) {
+        for (LongPropertyPair property : this.slotCounts) {
             property.set(0);
         }
 
@@ -224,16 +227,17 @@ public class StorageTerminalScreenHandler extends ScreenHandler {
         int slot = 0;
 
         for (Object2LongMap.Entry<ItemVariant> entry : entries) {
-            int count = entry.getLongValue() > Integer.MAX_VALUE ? Integer.MAX_VALUE : (int) entry.getLongValue();
+            long value = entry.getLongValue();
+            this.slotCounts[slot].set(value);
 
-            this.slotCounts[slot].set(count);
-            this.inventory.setStack(slot, entry.getKey().toStack(count));
+            int stackCount = value > Integer.MAX_VALUE ? Integer.MAX_VALUE : (int) value;
+            this.inventory.setStack(slot, entry.getKey().toStack(stackCount));
 
             slot += 1;
         }
     }
 
-    public int getCount(Slot slot) {
+    public long getCount(Slot slot) {
         if (slot.inventory == this.inventory) {
             return this.slotCounts[slot.getIndex()].get();
         }
@@ -286,7 +290,7 @@ public class StorageTerminalScreenHandler extends ScreenHandler {
         return FilteringStorage.extractOnlyOf(InventoryStorage.of(inventory, null));
     }
 
-    record Task(Storage<ItemVariant> from, Storage<ItemVariant> to, ItemVariant item, int maxAmount) implements Predicate<ItemVariant> {
+    record Task(Storage<ItemVariant> from, Storage<ItemVariant> to, ItemVariant item, long maxAmount) implements Predicate<ItemVariant> {
         @Override
         public boolean test(ItemVariant item) {
             return this.item() == null || this.item().equals(item);
