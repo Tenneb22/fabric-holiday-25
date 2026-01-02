@@ -62,7 +62,7 @@ public abstract class WitherEntityMixinSquared extends HostileEntity {
 
     @TargetHandler(
         mixin = "dev.louis.chainstylewither.mixin.WitherBossMixin",
-        name = "drop"
+        name = "method_16080"
     )
     @Inject(
         method = "@MixinSquared:Handler",
