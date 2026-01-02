@@ -2,6 +2,7 @@ package holiday;
 
 import com.google.gson.Gson;
 import net.fabricmc.api.DedicatedServerModInitializer;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.server.network.ServerPlayerEntity;
 import org.slf4j.Logger;
@@ -34,16 +35,31 @@ public class ServerEntrypoint implements DedicatedServerModInitializer {
             return;
         }
 
-        ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> announce(handler.player, handler.player.getName().getString() + " joined the server", CONFIG.discordWebhookUrl()));
-        ServerPlayConnectionEvents.DISCONNECT.register((handler, server) -> announce(handler.player, handler.player.getName().getString() + " left the server", CONFIG.discordWebhookUrl()));
+
+        ServerLifecycleEvents.SERVER_STARTED.register(server -> {
+            announceServerEvent("Server has started! Have fun playing", CONFIG.discordWebhookUrl());
+        });
+        ServerLifecycleEvents.SERVER_STOPPED.register(server -> {
+            announceServerEvent("Playing time is over, come back later!", CONFIG.discordWebhookUrl());
+        });
+        ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> announcePlayerJoin(handler.player, handler.player.getName().getString() + " joined the server", CONFIG.discordWebhookUrl()));
+        ServerPlayConnectionEvents.DISCONNECT.register((handler, server) -> announcePlayerJoin(handler.player, handler.player.getName().getString() + " left the server", CONFIG.discordWebhookUrl()));
     }
 
-    private static void announce(ServerPlayerEntity player, String message, String webookUrl) {
+    private static void announceServerEvent(String message, String webookUrl) {
+        sendWebhook(webookUrl, message, "https://fabricmc.net/assets/logo.png");
+    }
+
+    private static void announcePlayerJoin(ServerPlayerEntity player, String message, String webookUrl) {
+        sendWebhook(webookUrl, message, getAvatarUrl(player));
+    }
+
+    private static void sendWebhook(String webookUrl, String message, String url) {
         var webhook = new Webhook(
-                "Fabric Holiday Server",
-                message,
-                getAvatarUrl(player),
-                Webhook.AllowedMentions.NONE
+            "Fabric Holiday Server",
+            message,
+            url,
+            Webhook.AllowedMentions.NONE
         );
         String json = GSON.toJson(webhook);
 
