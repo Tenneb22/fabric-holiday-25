@@ -1,13 +1,13 @@
 name = "Anchor Teleport System"
-filename = "AnchorTeleportSystem-1.2.2+1.21.11.jar"
+filename = "AnchorTeleportSystem-1.2.3+1.21.11.jar"
 side = "both"
 
 [download]
-url = "https://cdn.modrinth.com/data/xv3zrGuz/versions/Wl4N3bwY/AnchorTeleportSystem-1.2.2%2B1.21.11.jar"
+url = "https://cdn.modrinth.com/data/xv3zrGuz/versions/eFro5dg8/AnchorTeleportSystem-1.2.3%2B1.21.11.jar"
 hash-format = "sha512"
-hash = "303446f2a587132ccf02183e2316ecefae95dc3ab35cbf134f35a8d91ca96df4a3444aab940c0a133ed2c283e446dff911d65860fcfaef14b51754fad8af590d"
+hash = "bd88a0a5fd3d21f4d4286a9af8ef58ca19f7d65c8bbb362b87b15ac3ee227abfb2fb0148662bddc6266617dfb12af204557d6750d544b52b6bd8420f8f788082"
 
 [update]
 [update.modrinth]
 mod-id = "xv3zrGuz"
-version = "Wl4N3bwY"
+version = "eFro5dg8"
