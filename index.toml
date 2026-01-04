@@ -39,10 +39,6 @@ file = "mods/breakerplacer.pw.toml"
 metafile = true
 
 [[files]]
-file = "mods/cicada.pw.toml"
-metafile = true
-
-[[files]]
 file = "mods/cloth-config.pw.toml"
 metafile = true
 
@@ -119,10 +115,6 @@ metafile = true
 
 [[files]]
 file = "mods/more_than_a_foxbox.pw.toml"
-metafile = true
-
-[[files]]
-file = "mods/omnihopper.pw.toml"
 metafile = true
 
 [[files]]
