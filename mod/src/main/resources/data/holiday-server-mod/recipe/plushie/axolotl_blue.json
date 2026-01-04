@@ -1,7 +1,7 @@
 {
 	"type": "more_than_a_foxbox:sewing",
 
-	"shell": "clue_wool",
+	"shell": "blue_wool",
 	"filler": "#more_than_a_foxbox:polyfill",
 	"essence": "axolotl_spawn_egg",
 
