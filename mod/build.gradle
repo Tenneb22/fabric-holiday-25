@@ -61,6 +61,7 @@ dependencies {
 	modRuntimeOnly "maven.modrinth:more_than_a_foxbox:1.1.2+1.21.11"
   include(implementation(annotationProcessor("com.github.bawnorton.mixinsquared:mixinsquared-fabric:0.3.7-beta.1")))
 
+  modImplementation "maven.modrinth:mavapi:2.0.1+1.21.11-fabric"
   modImplementation "unspecified:ChainStyleWither:1.7.0"
 }
 

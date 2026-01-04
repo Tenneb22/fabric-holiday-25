@@ -1,7 +1,7 @@
 {
 	"type": "more_than_a_foxbox:sewing",
 
-	"shell": "pink_wool",
+	"shell": "yellow_wool",
 	"filler": "#more_than_a_foxbox:polyfill",
 	"essence": "axolotl_spawn_egg",
 
@@ -9,7 +9,7 @@
 		"id": "more_than_a_foxbox:plushie",
 		"components": {
 			"more_than_a_foxbox:plushie": {
-				"variant": "holiday-server-mod:axolotl",
+				"variant": "holiday-server-mod:axolotl_gold",
         "sound_type": "speaker"
 			}
 		}

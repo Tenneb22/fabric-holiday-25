@@ -1,17 +1,16 @@
 {
 	"type": "more_than_a_foxbox:sewing",
 
-	"shell": "white_wool",
+	"shell": "clue_wool",
 	"filler": "#more_than_a_foxbox:polyfill",
 	"essence": "axolotl_spawn_egg",
-	"upgrade": "more_than_a_foxbox:speaker",
 
 	"result": {
 		"id": "more_than_a_foxbox:plushie",
 		"components": {
 			"more_than_a_foxbox:plushie": {
-				"variant": "holiday-server-mod:axolotl",
-				"sound_type": "speaker"
+				"variant": "holiday-server-mod:axolotl_blue",
+        "sound_type": "speaker"
 			}
 		}
 	}

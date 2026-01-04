@@ -1,0 +1,9 @@
+{
+	"mob_sounds": "entity.axolotl.idle_air",
+	"poses": {
+		"sit": "holiday-server-mod:more_than_a_foxbox/axolotl/cyan/lay",
+		"stand": "holiday-server-mod:more_than_a_foxbox/axolotl/cyan/lay",
+		"lay": "holiday-server-mod:more_than_a_foxbox/axolotl/cyan/lay",
+		"box": "holiday-server-mod:more_than_a_foxbox/axolotl/cyan/box"
+	}
+}

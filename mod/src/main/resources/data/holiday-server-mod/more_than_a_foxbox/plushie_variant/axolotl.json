@@ -1,9 +1,9 @@
 {
 	"mob_sounds": "entity.axolotl.idle_air",
 	"poses": {
-		"sit": "holiday-server-mod:more_than_a_foxbox/axolotl/lay",
-		"stand": "holiday-server-mod:more_than_a_foxbox/axolotl/lay",
-		"lay": "holiday-server-mod:more_than_a_foxbox/axolotl/lay",
-		"box": "holiday-server-mod:more_than_a_foxbox/axolotl/box"
+		"sit": "holiday-server-mod:more_than_a_foxbox/axolotl/lucy/lay",
+		"stand": "holiday-server-mod:more_than_a_foxbox/axolotl/lucy/lay",
+		"lay": "holiday-server-mod:more_than_a_foxbox/axolotl/lucy/lay",
+		"box": "holiday-server-mod:more_than_a_foxbox/axolotl/lucy/box"
 	}
 }

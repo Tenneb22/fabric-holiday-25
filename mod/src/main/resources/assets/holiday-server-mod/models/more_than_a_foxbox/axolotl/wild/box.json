@@ -1,0 +1,6 @@
+{
+  "parent": "holiday-server-mod:more_than_a_foxbox/axolotl/base/box",
+  "textures": {
+    "texture": "holiday-server-mod:item/plushie/axolotl/axolotl_wild"
+  }
+}

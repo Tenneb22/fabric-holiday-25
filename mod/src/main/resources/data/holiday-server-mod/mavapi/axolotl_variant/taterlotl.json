@@ -1,0 +1,8 @@
+{
+  "asset_id": "holiday-server-mod:entity/axolotl/axolotl_taterlotl",
+  "spawn_conditions": [
+    {
+      "priority": 0
+    }
+  ]
+}
